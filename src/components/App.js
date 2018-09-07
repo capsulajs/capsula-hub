@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from './Home';
-import Todo from './Todo';
-
+import getAsyncComponent from '../utils/getAsyncComponent';
 import '../styles/App.css';
+
+const loadHomeComponent = () => import('./Home');
+const loadTodoComponent = () => import('./Todo');
 
 class App extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/todo" component={Todo} />
+        <Route
+          exact
+          path="/"
+          component={getAsyncComponent(loadHomeComponent)}
+        />
+        <Route
+          exact
+          path="/todo"
+          component={getAsyncComponent(loadTodoComponent)}
+        />
       </Switch>
     );
   }
