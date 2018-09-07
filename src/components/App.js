@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import "../styles/App.css";
+import '../styles/App.css';
 
-class App extends           Component {
+class App extends Component {
   render() {
     return (
-                                  <div className="App">
-                                    <h1>Hello world</h1>
-                                  </div>
+      <div className="App">
+        <h1>Hello world</h1>
+      </div>
     );
   }
 }
