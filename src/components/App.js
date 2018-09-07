@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Home from './Home';
+import Todo from './Todo';
+
 import '../styles/App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1>Hello world 777</h1>
-      </div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/todo" component={Todo} />
+      </Switch>
     );
   }
 }
