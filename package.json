@@ -5,6 +5,7 @@
   "dependencies": {
     "@rematch/core": "^1.0.0-beta.4",
     "axios": "^0.18.0",
+    "cypress": "^3.1.0",
     "eslint-plugin-import": "^2.14.0",
     "flow-bin": "^0.80.0",
     "flow-typed": "^2.5.1",
@@ -32,6 +33,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "flow": "flow",
-    "flow:install": "flow-typed install"
+    "flow:install": "flow-typed install",
+    "cypress:open": "cypress open"
   }
 }
