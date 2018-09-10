@@ -2,7 +2,9 @@
 
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import getAsyncComponent from '../utils/getAsyncComponent';
+import store from '../store';
 import '../styles/App.css';
 
 const loadHomeComponent = () => import('./Home');
@@ -21,18 +23,20 @@ class App extends Component<Props, State> {
 
   render() {
     return (
-      <Switch>
-        <Route
-          exact
-          path="/"
-          component={getAsyncComponent(loadHomeComponent)}
-        />
-        <Route
-          exact
-          path="/todo"
-          component={getAsyncComponent(loadTodoComponent)}
-        />
-      </Switch>
+      <Provider store={store}>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={getAsyncComponent(loadHomeComponent)}
+          />
+          <Route
+            exact
+            path="/todo"
+            component={getAsyncComponent(loadTodoComponent)}
+          />
+        </Switch>
+      </Provider>
     );
   }
 }
