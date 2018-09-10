@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import getAsyncComponent from '../utils/getAsyncComponent';
@@ -6,7 +8,17 @@ import '../styles/App.css';
 const loadHomeComponent = () => import('./Home');
 const loadTodoComponent = () => import('./Todo');
 
-class App extends Component {
+type Props = {};
+
+type State = {
+  test: number
+};
+
+class App extends Component<Props, State> {
+  state = {
+    test: 777
+  };
+
   render() {
     return (
       <Switch>
