@@ -15,8 +15,11 @@ class Home extends Component {
         <Link to="/todo">Go to todo</Link>
 
         <div>
-          {this.props.name && <h2>Greetings to {this.props.name}!</h2>}
-          <input ref={this.nameInputRef} type="text" placeholder="Name" />
+          {this.props.name && (
+            <h2 data-testid="greeting">Greetings to {this.props.name}!</h2>
+          )}
+          <label htmlFor="user-name">User Name</label>
+          <input id="user-name" ref={this.nameInputRef} type="text" />
           <button
             type="button"
             onClick={() =>
@@ -39,7 +42,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateName: name => dispatch.user.getNameAsync({ name, timeout: 2000 })
+    updateName: name => dispatch.user.getNameAsync({ name, timeout: 1000 })
   };
 };
 
