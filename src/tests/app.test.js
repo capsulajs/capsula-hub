@@ -1,5 +1,5 @@
 import { fireEvent, waitForElement } from 'react-testing-library';
-import Home from '../components/Home';
+import Home from 'components/Home';
 import { renderApp } from './utils';
 
 describe('Testing App', () => {
@@ -9,7 +9,7 @@ describe('Testing App', () => {
       Component: Home,
       componentLoaderName: 'loadHomeComponent'
     });
-    expect(getByText('Home page')).toBeInTheDOM();
+    expect(getByText('Home page')).toBeInTheDocument();
     getByLabelText('User Name').value = 'Idan';
     fireEvent(
       getByText('Greet with the name'),

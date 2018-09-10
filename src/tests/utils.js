@@ -2,8 +2,8 @@ import React from 'react';
 import { render } from 'react-testing-library';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import baseStore from '../store';
-import Router, { componentLoaders } from '../components/Router';
+import baseStore from 'store';
+import Router, { componentLoaders } from 'components/Router';
 
 export const renderApp = async ({
   store = baseStore,
