@@ -1,25 +1,32 @@
 export const user = {
   // Initial state
   state: {
-    name: ''
+    name: '',
+    greeting: ''
   },
   reducers: {
     // handle state changes with pure functions
-    saveName(state, payload) {
+    updateName(state, payload) {
       return {
         ...state,
         name: payload
+      };
+    },
+    updateGreeting(state, payload) {
+      return {
+        ...state,
+        greeting: payload
       };
     }
   },
   effects: dispatch => ({
     // handle state changes with impure functions.
     // use async/await for async actions
-    async getNameAsync(payload, state) {
-      const loadedName = await new Promise(resolve =>
-        setTimeout(() => resolve(payload.name), payload.timeout)
+    async getGreetingAsync(payload, state) {
+      const loadedGreeting = await new Promise(resolve =>
+        setTimeout(() => resolve(`Greetings to ${state.user.name}!`), payload)
       );
-      dispatch.user.saveName(loadedName);
+      dispatch.user.updateGreeting(loadedGreeting);
     }
   })
 };

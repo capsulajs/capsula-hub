@@ -3,29 +3,23 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.nameInputRef = React.createRef();
-  }
-
   render() {
+    const { name, greeting, updateName, getGreeting } = this.props;
     return (
       <div>
         <h1>Home page</h1>
         <Link to="/todo">Go to todo</Link>
 
         <div>
-          {this.props.name && (
-            <h2 data-testid="greeting">Greetings to {this.props.name}!</h2>
-          )}
+          {greeting && <h2 data-testid="greeting">{greeting}</h2>}
           <label htmlFor="user-name">User Name</label>
-          <input id="user-name" ref={this.nameInputRef} type="text" />
-          <button
-            type="button"
-            onClick={() =>
-              this.props.updateName(this.nameInputRef.current.value)
-            }
-          >
+          <input
+            id="user-name"
+            value={name}
+            onChange={({ target: { value } }) => updateName(value)}
+            type="text"
+          />
+          <button type="button" onClick={getGreeting}>
             Greet with the name
           </button>
         </div>
@@ -36,13 +30,15 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    name: state.user.name
+    name: state.user.name,
+    greeting: state.user.greeting
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateName: name => dispatch.user.getNameAsync({ name, timeout: 1000 })
+    updateName: name => dispatch.user.updateName(name),
+    getGreeting: () => dispatch.user.getGreetingAsync(1000)
   };
 };
 

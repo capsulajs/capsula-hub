@@ -37,6 +37,12 @@
   dependencies:
     redux "4.0.0"
 
+"@rematch/persist@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@rematch/persist/-/persist-1.1.0.tgz#d73a622f5bad56c41f054a6079d70945734def5f"
+  dependencies:
+    redux-persist "^5.10.0"
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
@@ -6590,6 +6596,10 @@ reduce-function-call@^1.0.1:
   resolved "https://registry.yarnpkg.com/reduce-function-call/-/reduce-function-call-1.0.2.tgz#5a200bf92e0e37751752fe45b0ab330fd4b6be99"
   dependencies:
     balanced-match "^0.4.2"
+
+redux-persist@^5.10.0:
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.10.0.tgz#5d8d802c5571e55924efc1c3a9b23575283be62b"
 
 redux@4.0.0:
   version "4.0.0"

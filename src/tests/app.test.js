@@ -10,14 +10,15 @@ describe('Testing App', () => {
       componentLoaderName: 'loadHomeComponent'
     });
     expect(getByText('Home page')).toBeInTheDocument();
-    getByLabelText('User Name').value = 'Idan';
-    fireEvent(
-      getByText('Greet with the name'),
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true
-      })
-    );
+    fireEvent.change(getByLabelText('User Name'), {
+      bubbles: true,
+      cancelable: true,
+      target: { value: 'Idan' }
+    });
+    fireEvent.click(getByText('Greet with the name'), {
+      bubbles: true,
+      cancelable: true
+    });
     await waitForElement(() => getByTestId('greeting'));
     expect(getByTestId('greeting').innerHTML).toEqual('Greetings to Idan!');
   });
