@@ -4,6 +4,19 @@ export const user = {
     name: '',
     greeting: ''
   },
+  selectors: {
+    nameWithHelloWorldAndPathname: () => (state, props) => {
+      return `${state.user.name} - ${state.hello.world} - ${
+        props.location.pathname
+      }`;
+    },
+    name: () => (state, props) => {
+      return state.user.name;
+    },
+    greeting: () => (state, props) => {
+      return state.user.greeting;
+    }
+  },
   reducers: {
     // handle state changes with pure functions
     updateName(state, payload) {

@@ -43,6 +43,12 @@
   dependencies:
     redux-persist "^5.10.0"
 
+"@rematch/select@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@rematch/select/-/select-2.0.0.tgz#7d50628178ef4b6e38cb1741af7e5145fa6018a7"
+  dependencies:
+    reselect "^3.0.1"
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
@@ -6790,6 +6796,10 @@ require-uncached@^1.0.3:
 requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
+
+reselect@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/reselect/-/reselect-3.0.1.tgz#efdaa98ea7451324d092b2b2163a6a1d7a9a2147"
 
 resolve-cwd@^2.0.0:
   version "2.0.0"

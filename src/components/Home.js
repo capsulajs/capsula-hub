@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import store from '../store';
 
 class Home extends Component {
   render() {
-    const { name, greeting, updateName, getGreeting } = this.props;
+    const {
+      name,
+      greeting,
+      nameWithHelloWorldAndPathname,
+      updateName,
+      getGreeting
+    } = this.props;
     return (
       <div>
         <h1>Home page</h1>
         <Link to="/todo">Go to todo</Link>
+
+        <h3>{nameWithHelloWorldAndPathname}</h3>
 
         <div>
           {greeting && <h2 data-testid="greeting">{greeting}</h2>}
@@ -28,12 +37,11 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    name: state.user.name,
-    greeting: state.user.greeting
-  };
-};
+const mapStateToProps = store.select(models => ({
+  name: models.user.name,
+  greeting: models.user.greeting,
+  nameWithHelloWorldAndPathname: models.user.nameWithHelloWorldAndPathname
+}));
 
 const mapDispatchToProps = dispatch => {
   return {

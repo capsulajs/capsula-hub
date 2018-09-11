@@ -1,9 +1,9 @@
 import { init } from '@rematch/core';
 import createRematchPersist from '@rematch/persist';
+import selectPlugin from '@rematch/select';
 import * as models from './models';
 
 const persistPlugin = createRematchPersist({
-  key: 'capsula-hub-state',
   whitelist: ['user'],
   throttle: 5000,
   serialize: true,
@@ -12,5 +12,5 @@ const persistPlugin = createRematchPersist({
 
 export default init({
   models,
-  plugins: [persistPlugin]
+  plugins: [persistPlugin, selectPlugin()]
 });
