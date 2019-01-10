@@ -1,7 +1,11 @@
 {
   "name": "capsula-hub",
-  "version": "0.1.0",
-  "private": true,
+  "author": "CapsulaJS",
+  "license": "MIT",
+  "keywords": [],
+  "description": "",
+  "repository": "github:capsulajs/capsula-hub",
+  "version": "0.0.1",
   "dependencies": {
     "@types/jest": "23.3.12",
     "@types/node": "10.12.18",
@@ -22,6 +26,7 @@
     "start": "parcel src/index.html",
     "build": "parcel build src/index.ts --no-source-maps",
     "lint": "tslint src/**/*.ts src/**/*.tsx",
-    "test": "jest --maxWorkers=4 --env=jsdom"
+    "test": "",
+    "doc": "typedoc ./src --out ./doc --mode file --name 'CapsulaJS - Capsula Hub' --hideGenerator --readme ./documentation.md"
   }
 }
