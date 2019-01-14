@@ -1,8 +1,24 @@
-CapsulaJS
-=========
+Capsula Hub
+===========
+Description
+-----------
+An awesome tool to develop and test your micro-frontend services !
 
-Getting started
----------------
+Install
+-------
+`$ npm install capsula-hub`
+
+or
+
+`$ yarn add capsula-hub`
+
+Usage
+-----
+`capsula-hub run`
+
+
+Run it locally
+--------------
 To install the dependencies: `yarn install`
 
 To run the app: `yarn start`

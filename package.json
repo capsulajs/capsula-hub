@@ -1,11 +1,11 @@
 {
-  "name": "capsula-hub",
+  "name": "@capsulajs/capsula-hub",
   "author": "CapsulaJS",
   "license": "MIT",
-  "keywords": [],
+  "keywords": ["service", "microservice", "micro-frontend", "capsula"],
   "description": "",
   "repository": "github:capsulajs/capsula-hub",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "dependencies": {
     "@types/jest": "23.3.12",
     "@types/node": "10.12.18",
