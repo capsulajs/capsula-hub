@@ -6,15 +6,16 @@ An awesome tool to develop and test your micro-frontend services !
 
 Install
 -------
-`$ npm install capsula-hub`
+`$ npm install -g @capsulajs/capsula-hub`
 
 or
 
-`$ yarn add capsula-hub`
+`$ yarn global add @capsulajs/capsula-hub`
 
 Usage
 -----
-`capsula-hub run`
+`capsula-hub run` if you install it globally
+`yarn/npm run` with npm scripts
 
 
 Run it locally
