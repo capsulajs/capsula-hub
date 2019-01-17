@@ -12,16 +12,11 @@ install:
 
 script:
   - yarn lint
-  - yarn build
-  - yarn test
+#  - yarn build
+#  - yarn test
   - yarn doc
+  - bash scripts/publish.sh
 
 notifications:
   email:
     on_failure: always
-
-deploy:
-  - provider: script
-    script: bash scripts/deploy.sh
-    on:
-      all_branches: true
