@@ -19,3 +19,7 @@ script:
 notifications:
   email:
     on_failure: always
+
+deploy:
+  provider: script
+  script: bash scripts/deploy.sh
