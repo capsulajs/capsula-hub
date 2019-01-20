@@ -13,4 +13,8 @@ if ! [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
     [[ "$?" == 0 ]] && echo "npm version: Succeed" || (echo "npm version: Failed" && exit 1)
     npm publish --tag pull-request
     [[ "$?" == 0 ]] && echo "npm publish: Succeed" || (echo "npm publish: Failed" && exit 2)
+else
+    echo "*************************************************"
+    echo "*   Not a pull request, npm publish skipped !   *"
+    echo "*************************************************"
 fi
