@@ -9,12 +9,15 @@ MSG_PUBLISH_FAIL="npm publish: Failed"
 
 VERSION=$(npm version | grep @ | sed -re "s/\{ '.*': '(.*)',?/\1/g")
 
+echo "travis_PR -> $TRAVIS_PULL_REQUEST"
+echo "travis_branch -> $TRAVIS_BRANCH"
+
 if ! [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
     BRANCH_NAME=$(echo $TRAVIS_PULL_REQUEST_BRANCH | sed "s/[/]/-/g")
     TIMESTAMP=$(date +"%s")
     echo $VERSION-$BRANCH_NAME-$TIMESTAMP
     echo "--------------------------------------------"
-    echo "|       Deploying on npm registry          |"
+    echo "|    Deploying snapshot on npm registry    |"
     echo "--------------------------------------------"
     npm version $VERSION-$BRANCH_NAME-$TIMESTAMP
     if [[ "$?" == 0 ]]; then
