@@ -15,7 +15,16 @@ script:
 #  - yarn build
 #  - yarn test
   - yarn doc
-  - bash scripts/publish.sh
+#  - bash scripts/publish.sh
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: bash scripts/deploy.sh
+    on:
+      repo: capsulajs/capsula-hub
+      all_branches: true
+#      condition: ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} =~ ^feature\/.*$
 
 notifications:
   email:
