@@ -20,7 +20,7 @@ script:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: bash scripts/deploy.sh
+    script: bash scripts/publish.sh
     on:
       repo: capsulajs/capsula-hub
       all_branches: true
