@@ -10,7 +10,7 @@ MSG_PUBLISH_FAIL="npm publish: Failed"
 VERSION=$(npm version | grep @ | sed -re "s/\{ '.*': '(.*)',?/\1/g")
 
 if [[ "$TRAVIS_BRANCH" =~ ^feature\/.*$ ]]; then
-    BRANCH_NAME=$(echo $TRAVIS_PULL_REQUEST_BRANCH | sed "s/[/]/-/g")
+    BRANCH_NAME=$(echo $TRAVIS_BRANCH | sed "s/[/]/-/g")
     TIMESTAMP=$(date +"%s")
     echo $VERSION-$BRANCH_NAME-$TIMESTAMP
     echo "--------------------------------------------"
