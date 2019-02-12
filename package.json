@@ -1,5 +1,5 @@
 {
-  "name": "@capsulajs/capsula-hub-test-npm",
+  "name": "@capsulajs/capsula-hub",
   "author": "CapsulaJS",
   "license": "MIT",
   "keywords": ["service", "microservice", "micro-frontend", "capsula"],

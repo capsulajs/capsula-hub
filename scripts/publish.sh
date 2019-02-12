@@ -33,7 +33,7 @@ if [[ "$TRAVIS_BRANCH" =~ ^feature\/.*$ ]]; then
     else
         echo $MSG_PUBLISH_FAIL && exit 2
     fi
-elif [[ "$TRAVIS_BRANCH" == "develop" ]]; then
+elif [[ "$TRAVIS_BRANCH" == "develop" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
     echo $VERSION
     echo "--------------------------------------------"
     echo "|     Deploying latest on npm registry     |"
