@@ -9,6 +9,7 @@ MSG_PUBLISH_FAIL="npm publish: Failed"
 
 VERSION=$(npm version | grep @ | sed -re "s/\{ '.*': '(.*)',?/\1/g")
 
+echo "travis_pr               -> $TRAVIS_PULL_REQUEST"
 echo "travis_branch           -> $TRAVIS_BRANCH"
 echo "travis_pr_branch        -> $TRAVIS_PULL_REQUEST_BRANCH"
 echo "travis_build_stage_name -> $TRAVIS_BUILD_STAGE_NAME"
