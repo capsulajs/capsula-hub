@@ -1,6 +1,10 @@
 <html>
   <body>
     <div id="root"></div>
-    <script src="./index.tsx"></script>
+    <script type="module">
+        import { WorkspaceFactory as workspace } from 'https://capsulajs.s3.amazonaws.com/core/capsulahub-core-workspace/PR/feature/implement-workspace-factory/src/index.js';
+        import capsulahub from '../capsulahub.json';
+        workspace.createWorkspace({ token: capsulahub.token}).then(() => console.log(`Workspace loaded !`));
+    </script>
   </body>
 </html>
