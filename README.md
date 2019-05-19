@@ -148,3 +148,7 @@ Development
     }
     ```
 - Run `yarn start` or `npm run start`.
+
+License
+-------
+[CapsulaHub](https://github.com/capsulajs/capsula-hub) is released under [MIT License](./LICENSE).
