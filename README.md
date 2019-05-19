@@ -21,7 +21,7 @@ Usage
 Right now, only the localhost mode is available.
 The `token` is the path to the served configuration file.
 
-Configuration<a name="config_example"></a>
+Configuration
 -------------
 The configuration should match this [API](https://github.com/capsulajs/capsulahub-core/blob/develop/packages/workspace/src/api/WorkspaceConfig.ts).
 
@@ -79,7 +79,7 @@ export const capsulaHubConfig = {
 Develop your extension
 ----------------------
 An extension is a service that is able to register himself and can be reached by the configuration
-as detailed in this [section](#configurationa-nameconfig_examplea).
+as detailed in the previous section.
 
 This service can be reached when deployed to npm registry, any CDN or even served locally.
 
