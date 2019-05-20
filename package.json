@@ -28,8 +28,8 @@
     "capsula-hub": "./src/cli.js"
   },
   "scripts": {
-    "start": "parcel src/index.html",
-    "build": "parcel build src/index.ts --no-source-maps",
+    "start": "node src/helpers/runCapsulaHub.js",
+    "build": "parcel build src/index.tsx --no-source-maps",
     "lint": "tslint src/**/*.ts src/**/*.tsx",
     "test": "",
     "doc": "typedoc ./src --out ./doc --mode file --name 'CapsulaJS - Capsula Hub' --hideGenerator --readme ./documentation.md"
