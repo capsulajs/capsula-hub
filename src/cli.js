@@ -9,24 +9,8 @@ program
   .description('Run a Capsula-Hub instance with a token')
   .option('-l, --local', 'Run with local configuration file')
   .action((token) => {
-    const app = require('express')();
-    const Bundler = require('parcel-bundler');
-    const Path = require('path');
-    const fs = require('fs');
-
-    fs.writeFile('capsulahub.json', `{ "token": ${JSON.stringify(token)} }`, (response) => {
-      console.log(response);
-      const entryFiles = Path.join(__dirname, './index.html');
-      const options = {
-        outDir: '../dist',
-        outFile: 'index.html?token=toto'
-      };
-      const bundler = new Bundler(entryFiles, options);
-
-      app.use(bundler.middleware());
-
-      app.listen(3000);
-    });
+    const runner = require('./helpers/runCapsulaHub');
+    runner(token);
   });
 
 program
