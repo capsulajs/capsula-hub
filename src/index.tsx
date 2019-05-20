@@ -8,8 +8,6 @@ console.log(`Hello from tsx!\nMy token is ${capsulahub.token}`);
 
 
 ReactDOM.render(
-  <div>
-    <p>Hello</p>
-  </div>,
+  <div id="workspace"></div>,
   document.getElementById('root'),
 );
