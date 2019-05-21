@@ -21,7 +21,7 @@ program
       const CONSTANTS = require('./constants');
       const serveConfig = require('./helpers/serveLocalConfig');
       serveConfig(args.local);
-      runner(`localhost:${CONSTANTS.localConfigPort}`);
+      runner(`localhost:${CONSTANTS.localConfigPort}/configuration`);
     }
 
     if (args.token) {
