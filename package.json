@@ -35,7 +35,7 @@
     "capsula-hub": "./src/cli.js"
   },
   "scripts": {
-    "build": "parcel build src/index.html --no-source-maps --https",
+    "build": "parcel build src/index.html --no-source-maps --out-dir lib/",
     "lint": "tslint src/**/*.ts src/**/*.tsx",
     "test": "",
     "doc": "typedoc ./src --out ./doc --mode file --name 'CapsulaJS - Capsula Hub' --hideGenerator --readme ./documentation.md"

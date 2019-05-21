@@ -14,7 +14,7 @@ const runner = (token) => {
   app.use(allowCrossDomain);
 
   fs.writeFile('capsulahub.json', `{ "token": ${JSON.stringify(token)} }`, () => {
-    const entryFiles = Path.join(process.cwd(), './src/index.html');
+    const entryFiles = Path.join(process.cwd(), './lib/index.html');
     const options = {
       outDir: '../dist',
       outFile: `index.html`
