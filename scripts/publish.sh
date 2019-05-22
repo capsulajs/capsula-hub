@@ -33,7 +33,10 @@ elif [[ "$TRAVIS_BRANCH" == "develop" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false"
     echo "--------------------------------------------"
     echo "|     Deploying latest on npm registry     |"
     echo "--------------------------------------------"
+    git remote set-url origin https://${GH_TOKEN}@github.com/capsulajs/capsulahub.git
+    git checkout develop
     npm version patch
+    npm publish --access public
     if [[ "$?" == 0 ]]; then
         echo $MSG_VERSION_SUCCESS
     else

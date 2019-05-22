@@ -10,7 +10,7 @@
   ],
   "description": "",
   "repository": "github:capsulajs/capsula-hub",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "@capsulajs/capsulahub-core-workspace": "^0.0.1-alpha-1",
