@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "jest": "^23.6.0",
+    "rimraf": "^2.6.3",
     "ts-jest": "^23.10.5",
     "tslint": "^5.12.0",
     "typedoc": "^0.14.0",
@@ -35,7 +36,8 @@
     "capsula-hub": "./src/cli.js"
   },
   "scripts": {
-    "build": "parcel build src/index.html --no-source-maps --out-dir lib/",
+    "build": "yarn clean && parcel build src/index.html --no-source-maps --out-dir lib/",
+    "clean": "rimraf lib/",
     "lint": "tslint src/**/*.ts src/**/*.tsx",
     "test": "",
     "doc": "typedoc ./src --out ./doc --mode file --name 'CapsulaJS - Capsula Hub' --hideGenerator --readme ./documentation.md"
