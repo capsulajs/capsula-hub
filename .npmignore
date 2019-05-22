@@ -1,7 +1,6 @@
 .idea/
 .cache/
 doc/
-src/
 tests/
 .prettierignore
 .prettierrc.js
