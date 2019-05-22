@@ -8,7 +8,7 @@ An awesome tool to develop and test your micro-frontend services !
 
 Install
 -------
-In your project, run `$ npm install @capsulajs/capsula-hub` or `$ yarn add @capsulajs/capsula-hub`.
+In your project, run `$ npm install --save-dev @capsulajs/capsula-hub` or `$ yarn add -D @capsulajs/capsula-hub`.
 If you want to use `capsula-hub` command directly, you can install it globally.
 
 Usage
@@ -26,7 +26,7 @@ Example: _config.js_
 ```javascript
 module.exports = {
   name: 'my-app',
-  service: [
+  services: [
     {
       serviceName: 'myServiceA',
       path: 'https://my-cdn/my-service-a',
@@ -77,8 +77,8 @@ Develop your extension
 An extension is a service or a web component that is loaded by CapsulaHub. 
 The extension should look like this:
 ```typescript
-import { Workspace } from '@capsulajs/capsulahub-core';
-export default (workspace: Workspace, config: any): Promise<void> => {
+import { Workspace } from '@capsulajs/capsulahub-core-workspace';
+export default (workspace: Workspace, config: object): Promise<void> => {
   // your code here
 };
 
