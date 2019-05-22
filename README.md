@@ -8,31 +8,28 @@ An awesome tool to develop and test your micro-frontend services !
 
 Install
 -------
-`$ npm install -g @capsulajs/capsula-hub`
-
-or
-
-`$ yarn global add @capsulajs/capsula-hub`
+In your project, run `$ npm install @capsulajs/capsula-hub` or `$ yarn add @capsulajs/capsula-hub`.
+If you want to use `capsula-hub` command directly, you can install it globally.
 
 Usage
 -----
-`capsula-hub run <token>`
+`capsula-hub run -l <path/to/configuration_file>`
 
-Right now, only the localhost mode is available.
-The `token` is the path to the served configuration file.
+This command will run the app with the provided configuration.
 
 Configuration
 -------------
-The configuration should match this [API](https://github.com/capsulajs/capsulahub-core/blob/develop/packages/workspace/src/api/WorkspaceConfig.ts).
+The configuration should be a `js` file that exports an `object` which
+match this [API](https://github.com/capsulajs/capsulahub-core/blob/develop/packages/workspace/src/api/WorkspaceConfig.ts).
 
-Example: 
-```typescript
-export const capsulaHubConfig = {
-  name: 'my-config',
+Example: _config.js_
+```javascript
+module.exports = {
+  name: 'my-app',
   service: [
     {
       serviceName: 'myServiceA',
-      path: '@my-namespace/my-service-a',
+      path: 'https://my-cdn/my-service-a',
       definition: {
         serviceName: 'myServiceA',
         methods: {
@@ -58,18 +55,16 @@ export const capsulaHubConfig = {
   components: {
     layouts: {
       grid: {
-        componentName: 'web-grid',
-        nodeId: 'root',
+        componentName: 'my-grid',
         path: 'http://my-cdn/components/Grid.js',
         config: { title: 'Base Grid' },
        },
     },
     items: {
-      ['request-form']: {
-        componentName: 'web-request-form',
-        nodeId: 'request-form',
-        path: 'http://my-cdn/components/RequestForm.js',
-        config: { title: 'Base Request Form' },
+      myItem: {
+        componentName: 'my-item',
+        path: 'http://my-cdn/components/myItem.js',
+        config: { title: 'Base Item' },
       },
     }
   }
@@ -78,58 +73,28 @@ export const capsulaHubConfig = {
 
 Develop your extension
 ----------------------
-An extension is a service that is able to register himself and can be reached by the configuration
-as detailed in the previous section.
 
-This service can be reached when deployed to npm registry, any CDN or even served locally.
-
-The two variables `WORKSPACE` and `SERVICE_CONFIG` are passed through the service `Workspace` which 
-is a core service.
-
-`WORKSPACE` contains the methods that allows the service to register itself.
-`SERVICE_CONFIG` contains the service specific configuration previously loaded with the `token`.
-
+An extension is a service or a web component that is loaded by CapsulaHub. 
+The extension should look like this:
 ```typescript
-const bootstrap = (WORKSPACE: any, SERVICE_CONFIG: any) => {
-  return new Promise(async (resolve) => {
-    class ServiceA {
-      private readonly message: string;
-      constructor(message: string) {
-        this.message = message;
-      }
-
-      greet(name: string) {
-        return new Promise((resolve, reject) => {
-          if (!name) {
-            reject('No name to greet has been provided :-(');
-          }
-          resolve(`Dear ${name}, ${this.message}`);
-        });
-      }
-    }
-
-    const serviceA = new ServiceA(SERVICE_CONFIG.config.message);
-
-    const registerServiceData = {
-      serviceName: SERVICE_CONFIG.serviceName,
-      reference: serviceA,
-    };
-
-    await WORKSPACE.registerService(registerServiceData);
-    resolve({ ...registerServiceData, reference: serviceA });
-  });
+import { Workspace } from '@capsulajs/capsulahub-core';
+export default (workspace: Workspace, config: any): Promise<void> => {
+  // your code here
 };
 
-// @ts-ignore
-if (typeof publicExports !== 'undefined') {
-  // @ts-ignore
-  publicExports = bootstrap;
-}
-
-export default bootstrap;
-
 ```
+`workspace` and `config` are injected by the application in the extension.
 
+`workspace` is matching this [API](https://github.com/capsulajs/capsulahub-core/blob/develop/packages/workspace/src/api/Workspace.ts) 
+and could be use in particular to allow the service to register itself.
+
+`config` contains the configuration for this specific extension that you passed in the configuration file 
+(e.g: `configuration_file.services.['myExtension'].config` for myExtension service).
+
+For more details, take a look at this 
+[example file](https://github.com/capsulajs/capsulahub-core/blob/develop/packages/externalModules/src/services/serviceA.ts).
+
+<!-- To put back later for local dev
 Run it locally
 --------------
 |        What to do    |   Command   |
@@ -137,6 +102,7 @@ Run it locally
 | To run the linter:   | `yarn lint` |
 | To run the tests:    | `yarn test` |
 | To generate the doc: | `yarn doc`  |
+
 
 Development
 -----------
@@ -148,6 +114,7 @@ Development
     }
     ```
 - Run `yarn start` or `npm run start`.
+-->
 
 License
 -------
