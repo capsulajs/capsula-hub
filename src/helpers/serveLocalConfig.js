@@ -11,7 +11,7 @@ const serveLocalConfig = (path) => {
 
   app.use(allowCrossDomain);
 
-  app.post('/workspace', (req, res) => {
+  app.post('/configuration/workspace', (req, res) => {
     res.send(workspaceConfig);
   });
 

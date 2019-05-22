@@ -1,12 +1,15 @@
 import '@babel/polyfill';
 import capsulahub from '../capsulahub.json';
 import CONSTANTS from './constants';
-import(CONSTANTS.workspaceService).then((module) => console.log(module));
 
-const workspaceFactory = new WorkspaceFactory();
 let workspace;
-workspaceFactory
-  .createWorkspace({ token: capsulahub.token })
+
+import(CONSTANTS.workspaceService)
+  .then((module) => module.default)
+  .then((WorkspaceFactory) => {
+    const workspaceFactory = new WorkspaceFactory();
+    return workspaceFactory.createWorkspace({ token: capsulahub.token });
+  })
   .then((createdWorkspace) => {
     workspace = createdWorkspace;
   })
