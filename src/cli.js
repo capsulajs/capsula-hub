@@ -2,7 +2,6 @@
 
 const program = require('commander');
 
-
 program
   .command('run')
   .description('Run a Capsula-Hub instance')
