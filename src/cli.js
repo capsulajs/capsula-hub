@@ -9,11 +9,6 @@ program
   .description('Run a Capsula-Hub instance')
   .option('-l, --local <path-to-file>', 'Run with local configuration file')
   .action((args) => {
-    if (args.local && args.token) {
-      console.error(`Please choose only one option`);
-      process.exit(1);
-    }
-
     const runner = require('./helpers/runCapsulaHub');
     if (args.local) {
       const CONSTANTS = require('./constants');
