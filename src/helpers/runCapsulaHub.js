@@ -20,8 +20,7 @@ const runner = (options) => {
   app.use(allowCrossDomain);
 
   if (options.localConfig && options.path) {
-    const conf = `${process.cwd()}/${options.path}`;
-    const workspaceConfig = require(conf);
+    const workspaceConfig = require(`${process.cwd()}/${options.path}`);
     app.post('/configuration/workspace', (req, res) => {
       res.send(workspaceConfig);
       console.log(`CapsulaHUB configuration listening on port ${port} !`);
