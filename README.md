@@ -1,28 +1,29 @@
 [![Build Status](https://travis-ci.com/capsulajs/capsulahub.svg?branch=develop)](https://travis-ci.com/capsulajs/capsulahub)
 
-Capsula Hub
-===========
-Description
------------
+# Capsula Hub
+
+## Description
+
 An awesome tool to develop and test your micro-frontend services !
 
-Install
--------
+## Install
+
 In your project, run `$ npm install --save-dev @capsulajs/capsula-hub` or `$ yarn add -D @capsulajs/capsula-hub`.
 If you want to use `capsula-hub` command directly, you can install it globally.
 
-Usage
------
+## Usage
+
 `capsula-hub run -l <path/to/configuration_file>`
 
 This command will run the app with the provided configuration.
 
-Configuration
--------------
+## Configuration
+
 The configuration should be a `js` file that exports an `object` which
 match this [API](https://github.com/capsulajs/capsulahub-core/blob/develop/packages/workspace/src/api/WorkspaceConfig.ts).
 
 Example: _config.js_
+
 ```javascript
 module.exports = {
   name: 'my-app',
@@ -71,18 +72,18 @@ module.exports = {
 };
 ```
 
-Develop your extension
-----------------------
+## Develop your extension
 
 An extension is a service or a web component that is loaded by CapsulaHub. 
 The extension should look like this:
+
 ```typescript
 import { Workspace } from '@capsulajs/capsulahub-core-workspace';
 export default (workspace: Workspace, config: object): Promise<void> => {
   // your code here
 };
-
 ```
+
 `workspace` and `config` are injected by the application in the extension.
 
 `workspace` is matching this [API](https://github.com/capsulajs/capsulahub-core/blob/develop/packages/workspace/src/api/Workspace.ts) 
@@ -116,6 +117,6 @@ Development
 - Run `yarn start` or `npm run start`.
 -->
 
-License
--------
+## License
+
 [CapsulaHub](https://github.com/capsulajs/capsula-hub) is released under [MIT License](./LICENSE).

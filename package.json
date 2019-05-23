@@ -2,10 +2,29 @@
   "name": "@capsulajs/capsula-hub",
   "author": "CapsulaJS",
   "license": "MIT",
-  "keywords": ["service", "microservice", "micro-frontend", "capsula"],
+  "keywords": [
+    "service",
+    "microservice",
+    "micro-frontend",
+    "capsula"
+  ],
   "description": "",
   "repository": "github:capsulajs/capsula-hub",
-  "version": "0.0.1",
+  "version": "0.0.2-feature-issue-templates-1558609003",
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.ts --no-source-maps",
+    "lint": "yarn lint:md && yarn lint:ts",
+    "lint:ts": "tslint src/**/*.ts src/**/*.tsx",
+    "lint:md": "remark . --output",
+    "test": "",
+    "doc": "typedoc ./src --out ./doc --mode file --name 'CapsulaJS - Capsula Hub' --hideGenerator --readme ./documentation.md"
+  },
   "dependencies": {
     "@types/jest": "23.3.12",
     "@types/node": "10.12.18",
@@ -13,12 +32,18 @@
     "@types/react-dom": "16.0.11",
     "commander": "^2.19.0",
     "express": "^4.16.4",
+    "parcel-bundler": "^1.11.0",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "parcel-bundler": "^1.11.0"
+    "react-dom": "^16.7.0"
   },
   "devDependencies": {
+    "husky": "^2.3.0",
     "jest": "^23.6.0",
+    "prettier": "^1.17.1",
+    "pretty-quick": "^1.11.0",
+    "remark-cli": "^6.0.1",
+    "remark-lint": "^6.0.4",
+    "remark-preset-lint-recommended": "^3.0.2",
     "ts-jest": "^23.10.5",
     "tslint": "^5.12.0",
     "typedoc": "^0.14.0",
@@ -26,12 +51,5 @@
   },
   "bin": {
     "capsula-hub": "./src/cli.js"
-  },
-  "scripts": {
-    "start": "parcel src/index.html",
-    "build": "parcel build src/index.ts --no-source-maps",
-    "lint": "tslint src/**/*.ts src/**/*.tsx",
-    "test": "",
-    "doc": "typedoc ./src --out ./doc --mode file --name 'CapsulaJS - Capsula Hub' --hideGenerator --readme ./documentation.md"
   }
 }
