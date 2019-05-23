@@ -19,7 +19,7 @@ program
       };
       runner(options);
     } else {
-      console.error(`No flag given to run the app. Please try 'capsula-hub run -l <config_file>'`)
+      console.error('No flag given to run the app. Please try "capsula-hub run -l <config_file>"');
     }
   });
 

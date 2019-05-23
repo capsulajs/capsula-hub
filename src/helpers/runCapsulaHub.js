@@ -7,6 +7,10 @@ const isPlainObject = require('lodash').isPlainObject;
 const allowCrossDomain = require('./utils').allowCrossDomain;
 const port = require('../constants').localConfigPort;
 
+const isOptionValid = (options) => {
+  return options && isPlainObject(options) && options.token;
+};
+
 const runner = (options) => {
   if (!isOptionValid(options)) {
     console.error('Token required !');
@@ -16,10 +20,11 @@ const runner = (options) => {
   app.use(allowCrossDomain);
 
   if (options.localConfig && options.path) {
-    const workspaceConfig = require(`${process.cwd()}/${options.path}`);
+    const conf = `${process.cwd()}/${options.path}`;
+    const workspaceConfig = require(conf);
     app.post('/configuration/workspace', (req, res) => {
       res.send(workspaceConfig);
-      console.log(`CapsulaHUB configuration listening on port ${port} !`)
+      console.log(`CapsulaHUB configuration listening on port ${port} !`);
     });
   }
 
@@ -27,7 +32,7 @@ const runner = (options) => {
     const entryFiles = Path.resolve(__dirname, '../../lib/index.html');
     const options = {
       outDir: '../dist',
-      outFile: `index.html`
+      outFile: 'index.html'
     };
 
     const bundler = new Bundler(entryFiles, options);
@@ -35,10 +40,6 @@ const runner = (options) => {
 
     app.listen(port);
   });
-};
-
-const isOptionValid = (options) => {
-  return options && isPlainObject(options) && options.token;
 };
 
 module.exports = runner;
