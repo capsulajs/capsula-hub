@@ -23,7 +23,6 @@ const runner = (options) => {
     const workspaceConfig = require(`${process.cwd()}/${options.path}`);
     app.post('/configuration/workspace', (req, res) => {
       res.send(workspaceConfig);
-      console.log(`CapsulaHUB configuration listening on port ${port} !`);
     });
   }
 
@@ -38,6 +37,7 @@ const runner = (options) => {
     app.use(bundler.middleware());
 
     app.listen(port);
+    console.log(`CapsulaHub running on port ${port} !`);
   });
 };
 
