@@ -16,6 +16,8 @@ if [[ "$TRAVIS_BRANCH" =~ ^feature\/.*$ ]]; then
     echo "--------------------------------------------"
     echo "|    Deploying snapshot on npm registry    |"
     echo "--------------------------------------------"
+    echo $TRAVIS_BRANCH
+    git status
     npm version $VERSION-$BRANCH_NAME-$TIMESTAMP
     if [[ "$?" == 0 ]]; then
         echo $MSG_VERSION_SUCCESS
