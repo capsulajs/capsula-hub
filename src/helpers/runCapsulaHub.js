@@ -3,17 +3,27 @@ const app = require('express')();
 const Bundler = require('parcel-bundler');
 const Path = require('path');
 const fs = require('fs');
+const isPlainObject = require('lodash').isPlainObject;
 const allowCrossDomain = require('./utils').allowCrossDomain;
+const port = require('../constants').localConfigPort;
 
-const runner = (token) => {
-  if (!token) {
+const runner = (options) => {
+  if (!isOptionValid(options)) {
     console.error('Token required !');
     process.exit(1);
   }
 
   app.use(allowCrossDomain);
 
-  fs.writeFile('capsulahub.json', `{ "token": ${JSON.stringify(token)} }`, () => {
+  if (options.localConfig && options.path) {
+    const workspaceConfig = require(`${process.cwd()}/${options.path}`);
+    app.post('/configuration/workspace', (req, res) => {
+      res.send(workspaceConfig);
+      console.log(`CapsulaHUB configuration listening on port ${port} !`)
+    });
+  }
+
+  fs.writeFile('capsulahub.json', `{ "token": ${JSON.stringify(options.token)} }`, () => {
     const entryFiles = Path.resolve(__dirname, '../../lib/index.html');
     const options = {
       outDir: '../dist',
@@ -23,8 +33,12 @@ const runner = (token) => {
     const bundler = new Bundler(entryFiles, options);
     app.use(bundler.middleware());
 
-    app.listen(3000);
+    app.listen(port);
   });
+};
+
+const isOptionValid = (options) => {
+  return options && isPlainObject(options) && options.token;
 };
 
 module.exports = runner;
