@@ -2,10 +2,29 @@
   "name": "@capsulajs/capsula-hub",
   "author": "CapsulaJS",
   "license": "MIT",
-  "keywords": ["service", "microservice", "micro-frontend", "capsula"],
+  "keywords": [
+    "service",
+    "microservice",
+    "micro-frontend",
+    "capsula"
+  ],
   "description": "",
   "repository": "github:capsulajs/capsula-hub",
   "version": "0.0.2",
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.ts --no-source-maps",
+    "lint": "yarn lint:md && yarn lint:ts",
+    "lint:ts": "tslint src/**/*.ts src/**/*.tsx",
+    "lint:md": "remark . --output",
+    "test": "",
+    "doc": "typedoc ./src --out ./doc --mode file --name 'CapsulaJS - Capsula Hub' --hideGenerator --readme ./documentation.md"
+  },
   "dependencies": {
     "@types/jest": "23.3.12",
     "@types/node": "10.12.18",
@@ -26,12 +45,5 @@
   },
   "bin": {
     "capsula-hub": "./src/cli.js"
-  },
-  "scripts": {
-    "start": "parcel src/index.html",
-    "build": "parcel build src/index.ts --no-source-maps",
-    "lint": "tslint src/**/*.ts src/**/*.tsx",
-    "test": "",
-    "doc": "typedoc ./src --out ./doc --mode file --name 'CapsulaJS - Capsula Hub' --hideGenerator --readme ./documentation.md"
   }
 }
