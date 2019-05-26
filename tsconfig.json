@@ -44,6 +44,7 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "baseUrl": "./src",
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "jsx": "react"

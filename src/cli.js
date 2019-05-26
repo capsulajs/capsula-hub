@@ -3,24 +3,22 @@
 const program = require('commander');
 
 program
-  .version('0.0.1')
   .command('run')
   .description('Run a Capsula-Hub instance')
-  .action(() => {
-    const app = require('express')();
-    const Bundler = require('parcel-bundler');
-    const Path = require('path');
-
-    const entryFiles = Path.join(__dirname, './index.html');
-    const options = {
-      outDir: '../dist',
-      outFile: 'index.html'
-    };
-    const bundler = new Bundler(entryFiles, options);
-
-    app.use(bundler.middleware());
-
-    app.listen(3000);
+  .option('-l, --local <path-to-file>', 'Run with local configuration file')
+  .action((args) => {
+    const runner = require('./helpers/runCapsulaHub');
+    if (args.local) {
+      const CONSTANTS = require('./constants');
+      const options = {
+        token: `localhost:${CONSTANTS.localConfigPort}/configuration`,
+        localConfig: true,
+        path: args.local
+      };
+      runner(options);
+    } else {
+      console.error('No flag given to run the app. Please try "capsula-hub run -l <config_file>"');
+    }
   });
 
 program.parse(process.argv);
