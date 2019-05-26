@@ -1,7 +1,7 @@
 sudo: true
 language: node_js
 node_js:
-  - "10"
+  - '10'
 
 branches:
   only:
@@ -13,7 +13,7 @@ install:
 script:
   - yarn lint
   - yarn build
-#  - yarn test
+  #  - yarn test
   - yarn doc
   - 'if [ "$TRAVIS_BRANCH" != "develop" ]; then bash scripts/publish.sh; fi'
 
@@ -22,8 +22,8 @@ deploy:
     skip_cleanup: true
     script: bash scripts/publish.sh
     on:
-      repo: capsulajs/capsula-hub
-      branch:  develop
+      repo: capsulajs/capsulahub
+      branch: develop
 
 notifications:
   email:
