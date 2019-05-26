@@ -10,7 +10,7 @@
   ],
   "description": "",
   "repository": "github:capsulajs/capsula-hub",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "bin": {
     "capsula-hub": "./src/cli.js"
   },
