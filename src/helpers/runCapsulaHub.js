@@ -37,7 +37,14 @@ const runner = (args) => {
     app.use(bundler.middleware());
 
     app.listen(args.port);
-    console.log(`CapsulaHub running on port ${args.port} !`);
+    console.log(`
+      \n\n
+      +--------------------------------------------------+
+      |               CapsulaHub running on              |
+      |               http://localhost:${args.port}             |
+      +--------------------------------------------------+
+      \n\n
+    `);
   });
 };
 
