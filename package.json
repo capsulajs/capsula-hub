@@ -11,6 +11,23 @@
   "description": "",
   "repository": "github:capsulajs/capsula-hub",
   "version": "0.0.2",
+  "bin": {
+    "capsula-hub": "./src/cli.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "scripts": {
+    "build": "yarn clean && parcel build src/index.html --no-source-maps --out-dir lib/",
+    "clean": "rimraf lib/",
+    "lint": "yarn lint:md && yarn lint:ts",
+    "lint:ts": "tslint src/**/*.ts src/**/*.tsx",
+    "lint:md": "remark . --output",
+    "test": "",
+    "doc": "typedoc ./src --out ./doc --mode file --name 'CapsulaJS - Capsula Hub' --hideGenerator --readme ./documentation.md"
+  },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "@capsulajs/capsulahub-core-workspace": "^0.0.1-alpha-1",
@@ -25,22 +42,18 @@
     "react-dom": "^16.7.0"
   },
   "devDependencies": {
+    "husky": "^2.3.0",
     "jest": "^23.6.0",
     "lodash": "^4.17.11",
     "rimraf": "^2.6.3",
+    "prettier": "^1.17.1",
+    "pretty-quick": "^1.11.0",
+    "remark-cli": "^6.0.1",
+    "remark-lint": "^6.0.4",
+    "remark-preset-lint-recommended": "^3.0.2",
     "ts-jest": "^23.10.5",
     "tslint": "^5.12.0",
     "typedoc": "^0.14.0",
     "typescript": "^3.2.2"
-  },
-  "bin": {
-    "capsula-hub": "./src/cli.js"
-  },
-  "scripts": {
-    "build": "yarn clean && parcel build src/index.html --no-source-maps --out-dir lib/",
-    "clean": "rimraf lib/",
-    "lint": "tslint src/**/*.ts src/**/*.tsx",
-    "test": "",
-    "doc": "typedoc ./src --out ./doc --mode file --name 'CapsulaJS - Capsula Hub' --hideGenerator --readme ./documentation.md"
   }
 }
