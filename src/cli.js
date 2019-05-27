@@ -6,14 +6,17 @@ program
   .command('run')
   .description('Run a Capsula-Hub instance')
   .option('-l, --local <path-to-file>', 'Run with local configuration file')
+  .option('-p, --port <port>', 'Run on specified port (default 55555)')
   .action((args) => {
     const runner = require('./helpers/runCapsulaHub');
+    console.log(`port --------> ${args.port}`);
+    const port = args.port || 55555;
     if (args.local) {
-      const CONSTANTS = require('./constants');
       const options = {
-        token: `localhost:${CONSTANTS.localConfigPort}/configuration`,
+        token: `localhost:${port}/configuration`,
         localConfig: true,
-        path: args.local
+        path: args.local,
+        port,
       };
       runner(options);
     } else {
