@@ -1,5 +1,4 @@
 import '@babel/polyfill';
-// import capsulahub from '../capsulahub.json';
 import CONSTANTS from './constants';
 
 import(CONSTANTS.workspaceService)
