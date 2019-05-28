@@ -7,11 +7,10 @@ const isPlainObject = require('lodash').isPlainObject;
 const allowCrossDomain = require('./utils').allowCrossDomain;
 
 const isOptionValid = (options) => {
-  return options && isPlainObject(options) && options.token;
+  return options && isPlainObject(options) && options.port;
 };
 
 const runner = (args) => {
-  console.log(JSON.stringify(args));
   if (!isOptionValid(args)) {
     console.error('Token required !');
     process.exit(1);
@@ -26,37 +25,25 @@ const runner = (args) => {
     });
   }
 
-  // let jsonToken;
-  // fs.readFile(Path.resolve(__dirname, '../../capsulahub.json'), (err, data) => {
-  //   if (err) console.log('No file yet');
-  //   jsonToken = data || {token: {}};
-  // });
+  const entryFiles = Path.resolve(__dirname, '../../src/index.html');
+  const options = {
+    outDir: '../dist',
+    outFile: 'index.html',
+    noCache: true,
+  };
 
-  fs.writeFile(
-    Path.resolve(__dirname, '../../capsulahub.json'),
-    `{ ${JSON.stringify('token' + args.port)}: ${JSON.stringify(args.token)} }`,
-    () => {
-      const entryFiles = Path.resolve(__dirname, '../../src/index.html');
-      const options = {
-        outDir: '../dist',
-        outFile: 'index.html',
-        noCache: true,
-      };
+  const bundler = new Bundler(entryFiles, options);
+  app.use(bundler.middleware());
 
-      const bundler = new Bundler(entryFiles, options);
-      app.use(bundler.middleware());
-
-      app.listen(args.port);
-      console.log(`
-      \n\n
+  app.listen(args.port);
+  console.log(`
+      \n
       +--------------------------------------------------+
       |               CapsulaHub running on              |
       |               http://localhost:${args.port}             |
       +--------------------------------------------------+
-      \n\n
-    `);
-    }
-  );
+      \n
+  `);
 };
 
 module.exports = runner;
