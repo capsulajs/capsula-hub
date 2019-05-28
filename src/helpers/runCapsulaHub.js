@@ -26,18 +26,28 @@ const runner = (args) => {
     });
   }
 
-  fs.writeFile('capsulahub.json', `{ "token": ${JSON.stringify(args.token)} }`, () => {
-    const entryFiles = Path.resolve(__dirname, '../../lib/index.html');
-    const options = {
-      outDir: '../dist',
-      outFile: 'index.html',
-    };
+  // let jsonToken;
+  // fs.readFile(Path.resolve(__dirname, '../../capsulahub.json'), (err, data) => {
+  //   if (err) console.log('No file yet');
+  //   jsonToken = data || {token: {}};
+  // });
 
-    const bundler = new Bundler(entryFiles, options);
-    app.use(bundler.middleware());
+  fs.writeFile(
+    Path.resolve(__dirname, '../../capsulahub.json'),
+    `{ ${JSON.stringify('token' + args.port)}: ${JSON.stringify(args.token)} }`,
+    () => {
+      const entryFiles = Path.resolve(__dirname, '../../src/index.html');
+      const options = {
+        outDir: '../dist',
+        outFile: 'index.html',
+        noCache: true,
+      };
 
-    app.listen(args.port);
-    console.log(`
+      const bundler = new Bundler(entryFiles, options);
+      app.use(bundler.middleware());
+
+      app.listen(args.port);
+      console.log(`
       \n\n
       +--------------------------------------------------+
       |               CapsulaHub running on              |
@@ -45,7 +55,8 @@ const runner = (args) => {
       +--------------------------------------------------+
       \n\n
     `);
-  });
+    }
+  );
 };
 
 module.exports = runner;
