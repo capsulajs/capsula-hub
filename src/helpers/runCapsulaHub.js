@@ -7,13 +7,12 @@ const isPlainObject = require('lodash').isPlainObject;
 const allowCrossDomain = require('./utils').allowCrossDomain;
 
 const isOptionValid = (options) => {
-  return options && isPlainObject(options) && options.token;
+  return options && isPlainObject(options) && options.port;
 };
 
 const runner = (args) => {
-  console.log(JSON.stringify(args));
   if (!isOptionValid(args)) {
-    console.error('Token required !');
+    console.error('Port required !');
     process.exit(1);
   }
 
@@ -26,26 +25,25 @@ const runner = (args) => {
     });
   }
 
-  fs.writeFile('capsulahub.json', `{ "token": ${JSON.stringify(args.token)} }`, () => {
-    const entryFiles = Path.resolve(__dirname, '../../lib/index.html');
-    const options = {
-      outDir: '../dist',
-      outFile: 'index.html',
-    };
+  const entryFiles = Path.resolve(__dirname, '../../src/index.html');
+  const options = {
+    outDir: '../dist',
+    outFile: 'index.html',
+    noCache: true,
+  };
 
-    const bundler = new Bundler(entryFiles, options);
-    app.use(bundler.middleware());
+  const bundler = new Bundler(entryFiles, options);
+  app.use(bundler.middleware());
 
-    app.listen(args.port);
-    console.log(`
-      \n\n
+  app.listen(args.port);
+  console.log(`
+      \n
       +--------------------------------------------------+
       |               CapsulaHub running on              |
       |               http://localhost:${args.port}             |
       +--------------------------------------------------+
-      \n\n
-    `);
-  });
+      \n
+  `);
 };
 
 module.exports = runner;

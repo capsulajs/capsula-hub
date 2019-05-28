@@ -13,9 +13,13 @@ If you want to use `capsula-hub` command directly, you can install it globally.
 
 ## Usage
 
-`capsula-hub run -l <path/to/configuration_file>`
+```shell
+capsula-hub run [options]
 
-This command will run the app with the provided configuration.
+Options:
+  -l, --local <path-to-file>  Run with local configuration file
+  -p, --port <port>           Run on specified port (default 55555)
+```
 
 ## Configuration
 
