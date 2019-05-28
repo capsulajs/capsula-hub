@@ -12,7 +12,7 @@
   "repository": "github:capsulajs/capsula-hub",
   "version": "0.0.3",
   "bin": {
-    "capsula-hub": "./src/cli.js"
+    "capsula-hub": "./src/cli.ts"
   },
   "husky": {
     "hooks": {
@@ -31,26 +31,22 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "@capsulajs/capsulahub-core-workspace": "^0.0.1-alpha-1",
-    "@types/jest": "23.3.12",
-    "@types/node": "10.12.18",
-    "@types/react": "16.7.18",
-    "@types/react-dom": "16.0.11",
     "commander": "^2.19.0",
     "express": "^4.16.4",
-    "parcel-bundler": "^1.11.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "parcel-bundler": "^1.11.0"
   },
   "devDependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/node": "10.12.18",
     "husky": "^2.3.0",
     "jest": "^23.6.0",
     "lodash": "^4.17.11",
-    "rimraf": "^2.6.3",
     "prettier": "^1.17.1",
     "pretty-quick": "^1.11.0",
     "remark-cli": "^6.0.1",
     "remark-lint": "^6.0.4",
     "remark-preset-lint-recommended": "^3.0.2",
+    "rimraf": "^2.6.3",
     "ts-jest": "^23.10.5",
     "tslint": "^5.12.0",
     "typedoc": "^0.14.0",
