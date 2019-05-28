@@ -12,7 +12,7 @@ const isOptionValid = (options) => {
 
 const runner = (args) => {
   if (!isOptionValid(args)) {
-    console.error('Token required !');
+    console.error('Port required !');
     process.exit(1);
   }
 
