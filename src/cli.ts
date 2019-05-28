@@ -9,11 +9,9 @@ program
   .option('-p, --port <port>', 'Run on specified port (default 55555)')
   .action((args: { port: number; local: string }) => {
     const runner = require('./helpers/runCapsulaHub');
-    console.log(`port --------> ${args.port}`);
     const port = args.port || 55555;
     if (args.local) {
       const options = {
-        token: `localhost:${port}/configuration`,
         localConfig: true,
         path: args.local,
         port,
