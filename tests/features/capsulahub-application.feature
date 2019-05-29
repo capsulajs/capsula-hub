@@ -75,6 +75,6 @@ Scenario: Run Capsula-Hub  instance with the same config file path on two differ
 
 Scenario: Run Capsula-Hub  instance with valid config file path and with `-p` with no port
     When I run `capsula-hub run -l conf8888.js -p`
-    Then I expect to receive `error: option `-p, --port <port>' argument missing`
+    Then I expect to receive `error: option '-p, --port <port>' argument missing`
 
 
