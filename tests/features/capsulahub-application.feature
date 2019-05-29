@@ -64,7 +64,7 @@ Scenario: Run Capsula-Hub  instance with the same config file path on two differ
 
  Scenario: Run Capsula-Hub  instance without config file path without specifying the port
     When I run the command `capsula-hub run -l`
-    Then I expect to receive `error: option `-l, --local <path-to-file>' argument missing`
+    Then I expect to receive `error: option '-l, --local <path-to-file>' argument missing`
 
  Scenario: Run Capsula-Hub  instance without config file path specifying the port
     When I run the <command>
