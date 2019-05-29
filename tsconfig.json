@@ -1,5 +1,4 @@
 {
-  "extends": "tslint-config-airbnb",
   "rules": {
     "max-line-length": {
       "options": 120,
@@ -27,17 +26,13 @@
       "options": ["check-format"],
       "severity": "warning"
     },
-    "mocha-avoid-only": [
-      false
-    ],
-    "no-console": [
-      true
-    ]
+    "mocha-avoid-only": [false],
+    "no-console": [true]
   },
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "lib": ["dom", "es2015", "es2017.object"],
+    "lib": ["dom", "es2015", "es2017", "es6"],
     "declaration": true,
     "outDir": "./lib",
     "strict": true,

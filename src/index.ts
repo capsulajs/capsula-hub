@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import CONSTANTS from './constants';
+import { CONSTANTS } from './constants';
 
 import(CONSTANTS.workspaceService)
   .then((module) => module.default)

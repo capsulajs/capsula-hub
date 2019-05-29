@@ -1,16 +1,17 @@
 #!/usr/bin/env node
+import { RunOptions } from './types';
+import { allowCrossDomain } from './utils';
+import { isPlainObject } from 'lodash';
+
 const app = require('express')();
 const Bundler = require('parcel-bundler');
 const Path = require('path');
-const fs = require('fs');
-const isPlainObject = require('lodash').isPlainObject;
-const allowCrossDomain = require('./utils').allowCrossDomain;
 
-const isOptionValid = (options) => {
+const isOptionValid = (options: RunOptions) => {
   return options && isPlainObject(options) && options.port;
 };
 
-const runner = (args) => {
+const runner = (args: RunOptions) => {
   if (!isOptionValid(args)) {
     console.error('Port required !');
     process.exit(1);
@@ -20,7 +21,7 @@ const runner = (args) => {
 
   if (args.localConfig && args.path) {
     const workspaceConfig = require(`${process.cwd()}/${args.path}`);
-    app.post('/configuration/workspace', (req, res) => {
+    app.post('/configuration/workspace', (req: any, res: any) => {
       res.send(workspaceConfig);
     });
   }

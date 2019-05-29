@@ -12,7 +12,7 @@
   "repository": "github:capsulajs/capsula-hub",
   "version": "0.0.5",
   "bin": {
-    "capsula-hub": "./src/cli.ts"
+    "capsula-hub": "./lib/start.js"
   },
   "husky": {
     "hooks": {
@@ -21,6 +21,7 @@
   },
   "scripts": {
     "build": "yarn clean && parcel build src/index.html --no-source-maps --out-dir lib/",
+    "build:ts": "tsc -p tsconfig.json",
     "clean": "rimraf lib/",
     "lint": "yarn lint:md && yarn lint:ts",
     "lint:ts": "tslint src/**/*.ts src/**/*.tsx",
@@ -32,6 +33,7 @@
     "@babel/polyfill": "^7.4.4",
     "@capsulajs/capsulahub-core-workspace": "^0.0.1-alpha-1",
     "commander": "^2.19.0",
+    "esm": "^3.2.25",
     "express": "^4.16.4",
     "parcel-bundler": "^1.11.0"
   },
@@ -48,7 +50,9 @@
     "remark-preset-lint-recommended": "^3.0.2",
     "rimraf": "^2.6.3",
     "ts-jest": "^23.10.5",
+    "ts-node": "^8.2.0",
     "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.18.0",
     "typedoc": "^0.14.0",
     "typescript": "^3.2.2"
   }

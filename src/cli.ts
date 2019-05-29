@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { RunArgs } from './helpers/types';
 
 const program = require('commander');
 
@@ -7,7 +8,7 @@ program
   .description('Run a Capsula-Hub instance')
   .option('-l, --local <path-to-file>', 'Run with local configuration file')
   .option('-p, --port <port>', 'Run on specified port (default 55555)')
-  .action((args: { port: number; local: string }) => {
+  .action((args: RunArgs) => {
     const runner = require('./helpers/runCapsulaHub');
     const port = args.port || 55555;
     if (args.local) {
