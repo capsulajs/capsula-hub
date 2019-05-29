@@ -2,46 +2,46 @@
  Feature: CapsulaHub application
 
  Background:
- 	Given a npm package called @capsulajs/capsula-hub
-	And   a default port 55555
+    Given a npm package called @capsulajs/capsula-hub
+    And   a default port 55555
     And   a valid port is a number between 1 and 65535
     And   two existing config files conf.js and conf1.js located in capsulahub/src/config
 
  Scenario: Run Capsula-Hub  instance with a valid config file path without specifying the port
-	When  I run the command `capsula-hub run -l <path>` in the relevant directory
-		  | <path>         |
-		  | conf.js        |
-		  | config/conf.js |
-		  | src/config/conf.js|
-	Then  the application is running on the default port
-	And   workspace is created with the specified config file
+    When  I run the command `capsula-hub run -l <path>` in the relevant directory
+		 | <path>         |
+		 | conf.js        |
+		 | config/conf.js |
+		 | src/config/conf.js|
+    Then  the application is running on the default port
+    And   workspace is created with the specified config file
 
  Scenario: Run Capsula-Hub instance with a valid config file path specifying a valid port
-	When  I run the command `capsula-hub run -l conf.js -p 44444`
-	Then  the application is running on the specified port
-	And   workspace is created with the specified config file
+    When  I run the command `capsula-hub run -l conf.js -p 44444`
+    Then  the application is running on the specified port
+    And   workspace is created with the specified config file
 
  Scenario: Run Capsula-Hub instance with a valid config file path specifying an invalid port
-	When  I run the command `capsula-hub run -l conf.js -p <port>`
-		  |<port>|
-		  | abc  |
-		  | 123a |
-		  | 65536|
-		  | 0    |
-	Then  I expect to receive an error
+    When  I run the command `capsula-hub run -l conf.js -p <port>`
+		 |<port>|
+		 | abc  |
+		 | 123a |
+		 | 65536|
+		 | 0    |
+    Then  I expect to receive an error
 
  Scenario: Run Capsula-Hub instance with a config path that does not exist in the repository
-	Given conf3.js config file doesn't exist
-	When  I run the command `capsula-hub run -l conf3.js`
-	Then  I expect to receive `Error: Cannot find module '.../conf3.js'`
+    Given conf3.js config file doesn't exist
+    When  I run the command `capsula-hub run -l conf3.js`
+    Then  I expect to receive `Error: Cannot find module '.../conf3.js'`
 
  Scenario: Run Capsula-Hub  instance with a wrong path to an existing configuration file
- 	When  I run the command `capsula-hub run -l src/conf.js`
-	Then  I expect to receive `Error: Cannot find module '...src/conf.js'`
+    When  I run the command `capsula-hub run -l src/conf.js`
+    Then  I expect to receive `Error: Cannot find module '...src/conf.js'`
 
  Scenario: Run Capsula-Hub  instance with a valid config file path twice on the same port
- 	When  I run the command `capsula-hub run -l conf.js -p 55555`
-	And   I run the same command again
+    When  I run the command `capsula-hub run -l conf.js -p 55555`
+    And   I run the same command again
     Then  I expect to receive `Error: listen EADDRINUSE :::55555`
 
  Scenario: Run Capsula-Hub  instance with 2 valid config file paths on the same port
