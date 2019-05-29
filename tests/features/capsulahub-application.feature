@@ -4,7 +4,7 @@
  Background:
     Given a npm package called @capsulajs/capsula-hub
     And   a default port 55555
-    And   a valid port is a number between 1 and 65535
+    And   a valid port is a number between 1024 and 65535
     And   two existing config files conf.js and conf1.js located in capsulahub/src/config
 
  Scenario: Run Capsula-Hub  instance with a valid config file path without specifying the port
