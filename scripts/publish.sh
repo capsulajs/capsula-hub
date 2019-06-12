@@ -54,6 +54,8 @@ if [[ "$TRAVIS_BRANCH" =~ ^feature\/.*$ ]]; then
     echo "--------------------------------------------"
 
     setup_git
+    git checkout -- .
+    git status
     npm version $VERSION-$BRANCH_NAME-$TIMESTAMP
     npm publish --tag snapshot
 
