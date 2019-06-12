@@ -8,15 +8,16 @@ Feature: Build and Run commands for CapsulaHub CLI
           |<configProvider>                   |
           |LocalFileConfigurationProvider     |
           |HttpFileConfigurationProvider      |
-          |HardcoreServerConfigurationProvider|
+          |ScalecubeConfigurationProvider|
           |HttpServerConfigurationProvider    |
           |LocalStorageConfigurationProvider  |
     And   a default path to the output folder "./dist"
     And   a valid port is a number between 1024 and 65535
 
-  Scenario: Run CapsulaHub instance with specifying valid arguments
+  Scenario: Run CapsulaHub instance with specifying valid arguments (check for every <configProvider>)
     Given a valid token with configuration
     When  I run the command `capsulahub run --token="token" --configProvider="configProvider" --dispatcherUrl="dispatcherUrl" --port="port"` #add dispatcherUrl only for hardcoreServer provider
+    And   "configProvider" is one from the available providers
     Then  an workspace is created
     And   workspace is running on localhost on the specified port
     And   the specified configProvider is used
@@ -52,7 +53,7 @@ Feature: Build and Run commands for CapsulaHub CLI
   Scenario: Run CapsulaHub  instance with the same token for different configProvider on two different ports
     Given a valid token with configuration
     And   two valid ports "6666" and "8888"
-    When  I run the command `capsulahub run --token="token" --configProvider="hardcoreServer" --dispatcherUrl="dispatcherUrl" --port="6666"`
+    When  I run the command `capsulahub run --token="token" --configProvider="scalecube" --dispatcherUrl="dispatcherUrl" --port="6666"`
     And   I run the command `capsulahub run --token="token" --port="8888"`
     Then  an workspace instance is created that is running on port "6666"
     And   hardcoreServer is the configuration provider used
@@ -68,9 +69,10 @@ Feature: Build and Run commands for CapsulaHub CLI
     And   an workspace instance with configuration of tenant 2 is created that is running on port "8888"
     And   httpFile is the configuration provider used for both workspaces
     
-  Scenario: Run `capsulahub build` with specifying valid arguments
+  Scenario: Run `capsulahub build` with specifying valid arguments (check for every <configProvider>)
     Given a valid token with configuration
     When  I run the command `capsulahub build --token="token" --configProvider="configProvider" --dispatcherUrl="dispatcherUrl" --output="output"` #add dispatcherUrl only for hardcoreServer provider
+    And   "configProvider" is one from the available providers
     Then  the app is built
     And   the result of the build is put in the specified output path
     And   the specified configProvider is used
