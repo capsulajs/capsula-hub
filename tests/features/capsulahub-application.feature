@@ -18,7 +18,7 @@ Feature: Build and Run commands for CapsulaHub CLI
     Given a valid token with configuration
     When  I run the command `capsulahub run --token="token" --configProvider="configProvider" --dispatcherUrl="dispatcherUrl" --port="port"` #add dispatcherUrl only for hardcoreServer provider
     Then  an workspace is created
-    And   workspace is running on localhost on the specifying port
+    And   workspace is running on localhost on the specified port
     And   the specified configProvider is used
 
   Scenario: Run CapsulaHub instance without specifying the port and configProvider
@@ -59,7 +59,7 @@ Feature: Build and Run commands for CapsulaHub CLI
     And   an workspace instance is created that is running on port "8888"
     And   httpFile is the configuration provider used
 
-  Scenario: Run CapsulaHub  instance with two different token on two different ports
+  Scenario: Run CapsulaHub  instance with two different tokens on two different ports
     Given two valid tokens with different configuration
     And   two valid ports "6666" and "8888"
     When  I run the command `capsulahub run --token="token1" --port="6666"`
@@ -72,7 +72,7 @@ Feature: Build and Run commands for CapsulaHub CLI
     Given a valid token with configuration
     When  I run the command `capsulahub build --token="token" --configProvider="configProvider" --dispatcherUrl="dispatcherUrl" --output="output"` #add dispatcherUrl only for hardcoreServer provider
     Then  the app is built
-    And   the result of the build is put in the specifying output path
+    And   the result of the build is put in the specified output path
     And   the specified configProvider is used
 
   Scenario: Run `capsulahub build` without specifying the output and configProvider
