@@ -26,6 +26,7 @@
     "lint:ts": "tslint src/**/*.ts src/**/*.tsx",
     "lint:md": "remark . --output",
     "test": "",
+    "postversion": "git push",
     "doc": "typedoc ./src --out ./doc --mode file --name 'CapsulaJS - Capsula Hub' --hideGenerator --readme ./documentation.md"
   },
   "dependencies": {
