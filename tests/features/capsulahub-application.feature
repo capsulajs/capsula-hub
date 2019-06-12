@@ -16,7 +16,7 @@ Feature: Build and Run commands for CapsulaHub CLI
 
   Scenario: Run CapsulaHub instance with specifying valid arguments (check for every <configProvider>)
     Given a valid token with configuration
-    When  I run the command `capsulahub run --token="token" --configProvider="configProvider" --dispatcherUrl="dispatcherUrl" --port="port"` #add dispatcherUrl only for hardcoreServer provider
+    When  I run the command `capsulahub run --token="token" --configProvider="configProvider" --dispatcherUrl="dispatcherUrl" --port="port"` #add dispatcherUrl only for scalecube provider
     And   "configProvider" is one from the available providers
     Then  an workspace is created
     And   workspace is running on localhost on the specified port
@@ -71,7 +71,7 @@ Feature: Build and Run commands for CapsulaHub CLI
     
   Scenario: Run `capsulahub build` with specifying valid arguments (check for every <configProvider>)
     Given a valid token with configuration
-    When  I run the command `capsulahub build --token="token" --configProvider="configProvider" --dispatcherUrl="dispatcherUrl" --output="output"` #add dispatcherUrl only for hardcoreServer provider
+    When  I run the command `capsulahub build --token="token" --configProvider="configProvider" --dispatcherUrl="dispatcherUrl" --output="output"` #add dispatcherUrl only for scalecube provider
     And   "configProvider" is one from the available providers
     Then  the app is built
     And   the result of the build is put in the specified output path
