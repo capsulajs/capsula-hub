@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
-    "@capsulajs/capsulahub-core-workspace": "^0.0.1-alpha-1",
+    "@capsulajs/capsulahub-core-workspace": "^0.0.1-alpha.1",
     "@types/jest": "23.3.12",
     "@types/node": "10.12.18",
     "@types/react": "16.7.18",
