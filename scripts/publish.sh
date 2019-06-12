@@ -53,6 +53,7 @@ if [[ "$TRAVIS_BRANCH" =~ ^feature\/.*$ ]]; then
     echo "|    Deploying snapshot on npm registry    |"
     echo "--------------------------------------------"
 
+    setup_git
     npm version $VERSION-$BRANCH_NAME-$TIMESTAMP
     npm publish --tag snapshot
 
