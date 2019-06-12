@@ -59,7 +59,7 @@ Feature: Build and Run commands for CapsulaHub CLI
     And   an workspace instance is created that is running on port "8888"
     And   httpFile is the configuration provider used
 
-  Scenario: Run Capsula-Hub  instance with the different token on two different ports
+  Scenario: Run Capsula-Hub  instance with two different token on two different ports
     Given two valid tokens with different configuration
     And   two valid ports "6666" and "8888"
     When  I run the command `capsula-hub run --token="token1" --port="6666"`
