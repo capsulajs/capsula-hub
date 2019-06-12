@@ -52,13 +52,22 @@ Feature: Build and Run commands for CapsulaHub CLI
   Scenario: Run Capsula-Hub  instance with the same token for different configProvider on two different ports
     Given a valid token with configuration
     And   two valid ports "6666" and "8888"
-    When  I run the command `capsula-hub run --token="token" --configProvider="hardcoreServer" --dispatcherUrl="dispatcherUrl" --port="6666 "`
+    When  I run the command `capsula-hub run --token="token" --configProvider="hardcoreServer" --dispatcherUrl="dispatcherUrl" --port="6666"`
     And   I run the command `capsula-hub run --token="token" --port="8888"`
     Then  an workspace instance is created that is running on port "6666"
     And   hardcoreServer is the configuration provider used
     And   an workspace instance is created that is running on port "8888"
     And   httpFile is the configuration provider used
 
+  Scenario: Run Capsula-Hub  instance with the different token on two different ports
+    Given two valid tokens with different configuration
+    And   two valid ports "6666" and "8888"
+    When  I run the command `capsula-hub run --token="token1" --port="6666"`
+    And   I run the command `capsula-hub run --token="token2" --port="8888"`
+    Then  an workspace instance with configuration of tenant 1 is created that is running on port "6666" 
+    And   an workspace instance with configuration of tenant 2 is created that is running on port "8888"
+    And   httpFile is the configuration provider used for both workspaces
+    
   Scenario: Run `capsula-hub build` with specifying valid arguments
     Given a valid token with configuration
     When  I run the command `capsula-hub build --token="token" --configProvider="configProvider" --dispatcherUrl="dispatcherUrl" --output="output"` #add dispatcherUrl only for hardcoreServer provider
