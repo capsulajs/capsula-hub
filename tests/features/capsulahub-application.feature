@@ -29,64 +29,17 @@ Feature: Build and Run commands for CapsulaHub CLI
     And   httpFile is the configuration provider used
 
   Scenario: Run Capsula-Hub instance with invalid token
-    When  I run the command `capsula-hub run --token="token"`
-    And   one of the following values for <token> is provided
-          |<token>     |
-          |''        |
-          |{}        |
-          |{ test: 'test' }|
-          |[]        |
-          |['test']  |
-          |null      |
-          |undefined |
-          |true      |
-          |false     |
-          |0         |
-          |-1        |
+    When  I run the command `capsula-hub run --token="invalidToken"`
     Then  a relevant error is received
 
   Scenario: Run Capsula-Hub instance with invalid port
     Given a valid token with configuration
-    When  I run the command `capsula-hub run --token="token" --port="port" `
-    And   one of the following values for <port> is provided
-          |<port>    |
-          | 'abc'    |
-          | 65536    |
-          | 0        |
-          |{}        |
-          |{ test: 'test' }|
-          |[]        |
-          |['test']  |
-          |null      |
-          |undefined |
-          |true      |
-          |false     |
-          |-1        |
+    When  I run the command `capsula-hub run --token="token" --port="invalidPort" `
     Then  a relevant error is received
 
   Scenario: Run Capsula-Hub instance with an invalid value of <configProvider>
     Given a valid token with configuration
-    When  I run the command `capsula-hub run --token="token" --configProvider="configProvider" `
-    And   one of the following values for <configProvider> is provided
-          |<configProvider>    |
-          | 'abc'    |
-          | 65536    |
-          | 0        |
-          |{}        |
-          |{ test: 'test' }|
-          |[]        |
-          |['test']  |
-          |null      |
-          |undefined |
-          |true      |
-          |false     |
-          |-1        |
-    Then  a relevant error is received
-
-  Scenario: Run Capsula-Hub instance with an non-existent configProvider throws an error
-    Given a valid token with configuration
-    When  I run the command `capsula-hub run --token="token" --configProvider="configProvider" `
-    And   "configProvider" is not in the list of available configuration types
+    When  I run the command `capsula-hub run --token="token" --configProvider="invalidProvider" `
     Then  a relevant error is received
 
   Scenario: Run Capsula-Hub instance twice on the same port
@@ -98,12 +51,12 @@ Feature: Build and Run commands for CapsulaHub CLI
 
   Scenario: Run Capsula-Hub  instance with the same token for different configProvider on two different ports
     Given a valid token with configuration
-    And   two valid ports "port1" and "port2"
-    When  I run the command `capsula-hub run --token="token" --configProvider="hardcoreServer" --dispatcherUrl="dispatcherUrl" --port="port1 "`
-    And   I run the command `capsula-hub run --token="token" --port="port2"`
-    Then  an workspace instance is created that is running on port "port1"
+    And   two valid ports "6666" and "8888"
+    When  I run the command `capsula-hub run --token="token" --configProvider="hardcoreServer" --dispatcherUrl="dispatcherUrl" --port="6666 "`
+    And   I run the command `capsula-hub run --token="token" --port="8888"`
+    Then  an workspace instance is created that is running on port "6666"
     And   hardcoreServer is the configuration provider used
-    And   an workspace instance is created that is running on port "port2"
+    And   an workspace instance is created that is running on port "8888"
     And   httpFile is the configuration provider used
 
   Scenario: Run `capsula-hub build` with specifying valid arguments
@@ -121,58 +74,17 @@ Feature: Build and Run commands for CapsulaHub CLI
     And   httpFile is the configuration provider used
 
   Scenario: Run `capsula-hub build` with invalid token
-    When  I run the command `capsula-hub build --token="token"`
-    And   one of the following values for <token> is provided
-          |<token>     |
-          |''        |
-          |{}        |
-          |{ test: 'test' }|
-          |[]        |
-          |['test']  |
-          |null      |
-          |undefined |
-          |true      |
-          |false     |
-          |0         |
-          |-1        |
+    When  I run the command `capsula-hub build --token="invalidToken"`
     Then  a relevant error is received
 
   Scenario: Run `capsula-hub build` with specifying an invalid output path
     Given a valid token with configuration
-    When  I run the command `capsula-hub build --token="token" --output="output" `
-    And   one of the following values for <output> is provided
-          |<output>    |
-          | 'abc'    |
-          | 65536    |
-          | 0        |
-          |{}        |
-          |{ test: 'test' }|
-          |[]        |
-          |['test']  |
-          |null      |
-          |undefined |
-          |true      |
-          |false     |
-          |-1        |
+    When  I run the command `capsula-hub build --token="token" --output="invalidOutput" `
     Then  a relevant error is received
 
   Scenario: Run `capsula-hub build` with an invalid value of <configProvider>
     Given a valid token with configuration
-    When  I run the command `capsula-hub build --token="token" --configProvider="configProvider" `
-    And   one of the following values for <configProvider> is provided
-          |<configProvider>    |
-          | 'abc'    |
-          | 65536    |
-          | 0        |
-          |{}        |
-          |{ test: 'test' }|
-          |[]        |
-          |['test']  |
-          |null      |
-          |undefined |
-          |true      |
-          |false     |
-          |-1        |
+    When  I run the command `capsula-hub build --token="token" --configProvider="invalidProvider" `
     Then  a relevant error is received
 
   Scenario: Run `capsula-hub build` with an non-existent configProvider throws an error
