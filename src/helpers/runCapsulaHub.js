@@ -27,7 +27,7 @@ const runner = (args) => {
 
   const entryFiles = Path.resolve(__dirname, '../../src/index.html');
   const options = {
-    outDir: '../dist',
+    outDir: './dist',
     outFile: 'index.html',
     noCache: true,
   };
