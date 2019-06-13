@@ -6,6 +6,6 @@ import(CONSTANTS.workspaceService)
   .then((WorkspaceFactory) => {
     const workspaceFactory = new WorkspaceFactory();
     const port = window.location.port;
-    const token = `localhost:${port}/configuration`;
-    return workspaceFactory.createWorkspace({ token });
+    const token = `http://localhost:${port}/configuration`;
+    return workspaceFactory.createWorkspace({ token }).catch(e => console.error(Error(e)));
   });
