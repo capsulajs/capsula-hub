@@ -21,7 +21,7 @@ Feature: Build and Run commands for CapsulaHub CLI
     And   token B that allow access to this configuration using <configProvider> and <dispatcherUrl>
           |<configProvider>                   |<dispatcherUrl>
           |LocalFileConfigurationProvider     |(empty)
-          |ScalecubeConfigurationProvider     |'url123'
+          |ScalecubeConfigurationProvider     |'http://localhost:3000'
           |HttpServerConfigurationProvider    |(empty)
           |LocalStorageConfigurationProvider  |(empty)
     When  I run the command `capsulahub build --token="tokenB" --configProvider="configProvider" --output="output"`
