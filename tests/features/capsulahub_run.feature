@@ -23,7 +23,7 @@ Feature: Build and Run commands for CapsulaHub CLI
     And   token B that allow access to this configuration using <configProvider> and <dispatcherUrl>
           |<configProvider>                   |<dispatcherUrl>
           |LocalFileConfigurationProvider     |(empty)
-          |ScalecubeConfigurationProvider     |'url123'
+          |ScalecubeConfigurationProvider     |'http://localhost:3000'
           |HttpServerConfigurationProvider    |(empty)
           |LocalStorageConfigurationProvider  |(empty)
     When  I run the command `capsulahub run --token="tokenB" --configProvider="configProvider"  --port="6666"`
@@ -40,7 +40,7 @@ Feature: Build and Run commands for CapsulaHub CLI
     And   HttpFile is the provider used to get configuration of token B
 
   #4
-  Scenario: Run CapsulaHub instance with the same token for different configProvider on two different ports
+  Scenario: Run CapsulaHub instance with the same token on two different ports
     Given a configuration that includes component A
     And   token B that allow access to this configuration
     And   two valid ports "6666" and "8888"
