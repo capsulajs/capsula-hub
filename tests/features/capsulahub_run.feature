@@ -10,7 +10,7 @@ Feature: Build and Run commands for CapsulaHub CLI
   #1
   Scenario: Run CapsulaHub instance with specifying valid arguments (check for HttpFile provider)
     Given a configuration that includes component A
-    And   token B that allow access to this configuration using HttpFileConfigurationProvider
+    And   token B that allow access to this configuration using HttpFile config provider
     When  I run the command `capsulahub run --token="tokenB" --configProvider="HttpFile"  --port="6666"`
     And   the app is running on the specified port "6666"
     And   I open the app in the browser
@@ -21,13 +21,13 @@ Feature: Build and Run commands for CapsulaHub CLI
   Scenario: Run CapsulaHub instance with specifying valid arguments (check for LocalFile, Scalecube, HttpServer and LocalStorage provider)
     Given a configuration that includes component A
     And   token B that allow access to this configuration using <configProvider> and <dispatcherUrl>
-          |<configProvider>                   |<dispatcherUrl>
-          |LocalFileConfigurationProvider     |(empty)
-          |ScalecubeConfigurationProvider     |'http://localhost:3000'
-          |HttpServerConfigurationProvider    |(empty)
-          |LocalStorageConfigurationProvider  |(empty)
-    When  I run the command `capsulahub run --token="tokenB" --configProvider="configProvider"  --port="6666"`
-    Then  an workspace is created using right configuration provider
+          |<configProvider>                   |<dispatcherUrl>        |
+          |LocalFileConfigurationProvider     |(empty)                |
+          |ScalecubeConfigurationProvider     |'http://localhost:3000'|
+          |HttpServerConfigurationProvider    |(empty)                |
+          |LocalStorageConfigurationProvider  |(empty)                | 
+    When  I run the command `capsulahub run --token="tokenB" --configProvider="<configProvider>"  --port="6666" --dispatcherUrl="<dispatcherUrl>"`# add dispatcherUrl argument in the command only for Scalecube 
+    Then  an workspace is created using the right configuration provider
 
   #3
   Scenario: Run CapsulaHub instance without specifying the port and configProvider
@@ -70,7 +70,9 @@ Feature: Build and Run commands for CapsulaHub CLI
 #______________________________________NEGATIVE______________________________________
 
   #1
-  Scenario: Run CapsulaHub instance with invalid token
+  Scenario: Run CapsulaHub instance with non-existent token throws an error
+    Given a configuration that includes component A
+    And   token B that allow access to this configuration
     When  I run the command `capsulahub run --token="invalidToken"`
     Then  a relevant error is received
 
@@ -82,10 +84,11 @@ Feature: Build and Run commands for CapsulaHub CLI
     Then  a relevant error is received
 
    #3
-  Scenario: Run CapsulaHub instance with an invalid value of <configProvider>
+  Scenario: Run CapsulaHub instance with a non-existent configProvider throws an error
     Given a configuration that includes component A
     And   token B that allow access to this configuration
     When  I run the command `capsulahub run --token="token" --configProvider="invalidProvider" `
+    And   "configProvider" is not in the list of available configuration types
     Then  a relevant error is received
 
   #4
